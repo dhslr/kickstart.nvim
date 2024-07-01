@@ -12,24 +12,12 @@ return {
     },
   },
   {
-    'kelly-lin/ranger.nvim',
-    config = function()
-      require('ranger-nvim').setup { replace_netrw = true }
-      vim.api.nvim_set_keymap('n', '<leader>ef', '', {
-        noremap = true,
-        callback = function()
-          require('ranger-nvim').open(true)
-        end,
-      })
-    end,
-  },
-  {
     'mfussenegger/nvim-lint',
     config = function()
       local lint = require 'lint'
 
       lint.linters_by_ft = {
-        elixirs = { 'credo' },
+        elixir = { 'credo' },
       }
 
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
@@ -41,5 +29,24 @@ return {
         end,
       })
     end,
+  },
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.keymap.set('i', '<C-Space>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+    config = true,
   },
 }
