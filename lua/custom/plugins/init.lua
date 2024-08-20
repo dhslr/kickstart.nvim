@@ -96,4 +96,7 @@ return {
       })
     end,
   },
+  {
+    'christoomey/vim-tmux-navigator', -- seamless navigation between tmux and vim
+  },
 }
