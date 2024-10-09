@@ -47,7 +47,18 @@ return {
       'sindrets/diffview.nvim',
       'nvim-telescope/telescope.nvim',
     },
-    config = true,
+    config = function()
+      local neogit = require 'neogit'
+      neogit.setup {}
+      local function neogitfn(opts)
+        return function()
+          neogit.open(opts)
+        end
+      end
+      vim.keymap.set('n', '<leader>gg', neogitfn {}, { desc = 'Neo[g]it main screen' })
+      vim.keymap.set('n', '<leader>gc', neogitfn { 'commit', kind = 'split_above' }, { desc = 'Neo[g]it [c]ommit' })
+      vim.keymap.set('n', '<leader>gl', neogitfn { 'log', kind = 'split_above' }, { desc = 'Neo[g]it [l]og' })
+    end,
   },
   {
     'scalameta/nvim-metals',
