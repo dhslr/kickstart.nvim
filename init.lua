@@ -647,6 +647,7 @@ require('lazy').setup({
         tailwindcss = {},
       }
 
+      require('lspconfig').gleam.setup {} -- not in servers list because mason does not support gleam
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -914,6 +915,7 @@ require('lazy').setup({
         'vim',
         'vimdoc',
         'elixir',
+        'gleam',
         'eex',
         'heex',
         'javascript',
